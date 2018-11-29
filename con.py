@@ -50,16 +50,15 @@ def waitAndExecuteCommand(commandChannel):
         logging.info("recv:" + str(command))
         # command can be a response of heart beat or an update of the LED_Control,
         # so we split by ',' and drop device id and device key and check length
-        fields = str(command).split(',')[2]
+        fields = str(command,encoding="utf-8").split(',')[2:]
         if len(fields) > 1:
             timeStamp, dataChannelId, commandString = fields
             if dataChannelId == 'control':
                 #check the value - it's either 0 or 1
                 commandValue = int(commandString)
-                #logging.info("led :%d" % commandValue)
-                print(str(commandValue))
-                return commandValue
-                #on= GPIO.output(4,commandValue)
+                print(commandString)
+                logging.info("led :%d" % commandValue)
+                on= GPIO.output(4,commandValue)
 #pin = 26
 #GPIO.setmode(GPIO.BCM)
 #GPIO.setup(pin,GPIO.OUT)
@@ -80,5 +79,5 @@ def setLED(state):
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(4,GPIO.OUT)
 channel = establishCommandChannel()
-GPIO.output(4,waitAndExecuteCommand(channel))
+waitAndExecuteCommand(channel)
 
