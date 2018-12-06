@@ -60,23 +60,11 @@ def waitAndExecuteCommand(commandChannel):
                 print(commandString)
                ##logging.info("led :%d" % commandValue)
                ## on= GPIO.output(4,commandValue)
-#pin = 26
-#GPIO.setmode(GPIO.BCM)
-#GPIO.setup(pin,GPIO.OUT)
-#def setupLED():
-#	global pin
-# on LinkIt Smart 7699, pin 44 is the Wi-Fi LED.
 
-#	GPIO.setmode(GPIO.BCM)
-#	GPIO.setup(pin,GPIO.OUT)
 
-def setLED(state):
-    # Note the LED is "reversed" to the pin's GPIO status.
-    # So we reverse it here.
-    on=GPIO.output(4,state)
 
-#if __name__ == '__main__':
-#    setupLED()
+
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(4,GPIO.OUT)
 channel = establishCommandChannel()
